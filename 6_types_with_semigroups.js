@@ -19,6 +19,9 @@ const { Map } = require("immutable");
 // const res = [1, 2].concat([3, 4]).concat([5, 6]);
 // const res = [1, 2].concat([3, 4].concat([5, 6]));
 
+// 1 + 0 --> 1
+// 2 + 0 --> 2
+// x + 0 --> x
 const Sum = (x) => ({ x, concat: ({ x: y }) => Sum(x + y), inspect: () => `Sum(${x})` });
 
 // const res = Sum(1).concat(Sum(2));
@@ -26,7 +29,8 @@ const Sum = (x) => ({ x, concat: ({ x: y }) => Sum(x + y), inspect: () => `Sum($
 // true && false --> false
 // true && true --> true
 const All = (x) => ({ x, concat: ({ x: y }) => All(x && y), inspect: () => `All(${x})` });
-// const res = All(true).concat(All(false));
+const res = All(true).concat(All(false));
+console.log(res);
 
 const First = (x) => ({ x, concat: (_) => First(x), inspect: () => `First(${x})` });
 
@@ -37,6 +41,6 @@ const First = (x) => ({ x, concat: (_) => First(x), inspect: () => `First(${x})`
 const acct1 = Map({ name: First("Nico"), isPaid: All(true), point: Sum(10), friends: ["Franklin"] });
 const acct2 = Map({ name: First("Nico"), isPaid: All(false), point: Sum(2), friends: ["Gatsby"] });
 
-const res = acct1.concat(acct2);
+// const res = acct1.concat(acct2);
 // toJs(), Converts back to raw JavaScript objects.
-console.log(res.toJS());
+// console.log(res.toJS());
