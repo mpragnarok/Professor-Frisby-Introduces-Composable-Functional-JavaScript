@@ -31,7 +31,6 @@ const findColor = (name) => fromNullable({ red: "#ff4444", blue: "#3b5998", yell
 // console.log(result);
 
 const fs = require("fs");
-const { parse } = require("path/posix");
 
 // const getPort = () => {
 //   try {
