@@ -22,6 +22,8 @@ const fromNullable = (x) => (x ? Right(x) : Left(null));
 const Either = (x) => (x ? Right(x) : Left(null));
 
 Either.of = Right.of;
+// Cause we want to .map after using .of(), it's impossible to use .map after a Left.of
+// Either.of('hello').map(x=>x+'!')
 
 const tryCatch = (f) => {
   try {
@@ -35,4 +37,5 @@ module.exports = {
   Right,
   fromNullable,
   tryCatch,
+  Either,
 };
