@@ -1,9 +1,11 @@
+const util = require("util");
 const Left = (x) => ({
   ap: (fx) => fx.map(x),
   chain: (f) => Left(x),
   map: (f) => Left(x),
   fold: (f, g) => f(x),
-  inspect: () => `Left( ${x} )`,
+  concat: (o) => Left(x),
+  [util.inspect.custom]: () => `Left(${x})`,
 });
 Left.of = (x) => Left(x);
 
@@ -12,12 +14,15 @@ const Right = (x) => ({
   chain: (f) => f(x),
   map: (f) => Right(f(x)),
   fold: (f, g) => g(x),
-  inspect: () => `Right( ${x} )`,
+  [util.inspect.custom]: () => `Right(${x})`,
+  concat: (o) =>
+    o.fold(
+      (e) => Left(e),
+      (r) => Right(x.concat(r)),
+    ),
 });
 
 Right.of = (x) => Right(x);
-
-const fromNullable = (x) => (x ? Right(x) : Left(null));
 
 const Either = (x) => (x ? Right(x) : Left(null));
 
@@ -35,7 +40,6 @@ const tryCatch = (f) => {
 module.exports = {
   Left,
   Right,
-  fromNullable,
   tryCatch,
   Either,
 };

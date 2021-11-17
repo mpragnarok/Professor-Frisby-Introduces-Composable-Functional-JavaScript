@@ -1,7 +1,5 @@
-const { Box } = require("./box");
-const Task = require("data.task");
-const { Either, Right, Left, fromNullable } = require("./either");
-const { List, Map } = require("immutable-ext");
+const { Right } = require("./either");
+const { List } = require("immutable-ext");
 
 /**
  * You have been using Functors!!

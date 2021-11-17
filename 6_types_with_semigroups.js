@@ -41,6 +41,6 @@ const First = (x) => ({ x, concat: (_) => First(x), inspect: () => `First(${x})`
 const acct1 = Map({ name: First("Nico"), isPaid: All(true), point: Sum(10), friends: ["Franklin"] });
 const acct2 = Map({ name: First("Nico"), isPaid: All(false), point: Sum(2), friends: ["Gatsby"] });
 
-// const res = acct1.concat(acct2);
+const res2 = acct1.concat(acct2);
 // toJs(), Converts back to raw JavaScript objects.
-// console.log(res.toJS());
+console.log(res2.toJS());

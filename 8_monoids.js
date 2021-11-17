@@ -56,13 +56,8 @@ const first = (xs) => xs.reduce((acc, x) => acc);
 
 // console.log(first([])); // TypeError: Reduce of empty array with no initial value
 
-// Examples
-// Sum --> Product
-const Product = (x) => ({ x, concat: ({ x: y }) => Product(x * y) });
-
-Product.empty = () => Product(1);
-
 // Any -->
 
 exports.Sum = Sum;
 exports.Right = Right;
+exports.All = All;

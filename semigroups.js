@@ -1,19 +1,20 @@
+const util = require("util");
 const Sum = (x) => ({
   x,
   concat: ({ x: y }) => Sum(x + y),
-  inspect: () => `Sum(${x})`,
+  [util.inspect.custom]: () => `Sum(${x})`,
 });
 
 const All = (x) => ({
   x,
   concat: ({ x: y }) => All(x && y),
-  inspect: () => `All(${x})`,
+  [util.inspect.custom]: () => `All(${x})`,
 });
 
 const First = (x) => ({
   x,
   concat: (_) => First(x),
-  inspect: () => `First(${x})`,
+  [util.inspect.custom]: () => `First(${x})`,
 });
 
 exports.Sum = Sum;
