@@ -5,7 +5,7 @@ const Left = (x) => ({
   map: (f) => Left(x),
   fold: (f, g) => f(x),
   concat: (o) => Left(x),
-  [util.inspect.custom]: () => `Left(${x})`,
+  inspect: () => `Left(${x})`,
 });
 Left.of = (x) => Left(x);
 
@@ -14,7 +14,7 @@ const Right = (x) => ({
   chain: (f) => f(x),
   map: (f) => Right(f(x)),
   fold: (f, g) => g(x),
-  [util.inspect.custom]: () => `Right(${x})`,
+  inspect: () => `Right(${x})`,
   concat: (o) =>
     o.fold(
       (e) => Left(e),
