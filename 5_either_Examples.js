@@ -104,7 +104,7 @@ console.log(concatUniq(2, [5, 1, 1])); //  uniq
 const readFile = (x) => tryCatch(() => fs.readFileSync(x, "utf8"));
 const parseJson = (json) => tryCatch(() => JSON.parse(json));
 
-const example = { previewPath: "./example.json" };
+const example = { previePath: "./example.json" };
 const wrapExample = (example) =>
   fromNullable(example.previewPath)
     .chain(readFile)

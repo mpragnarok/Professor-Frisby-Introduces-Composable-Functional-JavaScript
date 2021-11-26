@@ -2,21 +2,20 @@ const Immutable = require("immutable");
 const { List, Map } = Immutable;
 
 const derived = {
-  fold: function (empty) {
+  fold(empty) {
     return this.foldMap((x) => x, empty);
   },
-  foldMap: function (f, empty) {
+  foldMap(f, empty) {
     return empty != null
       ? this.reduce((acc, x, i) => acc.concat(f(x, i)), empty)
       : this.map(f).reduce((acc, x) => acc.concat(x));
   },
-  sequence: function (point) {
+  sequence(point) {
     return this.traverse(point, (x) => x);
   },
 };
 
 // List
-//====================
 
 // monoid
 List.empty = List();
@@ -47,7 +46,6 @@ List.prototype.extend = function (f) {
 };
 
 // Map
-//===============
 
 // semigroup
 Map.prototype.concat = function (other) {
@@ -83,4 +81,4 @@ Map.prototype.extend = function (f) {
   return this.map((_) => f(this));
 };
 
-module.exports = Immutable;
+export default Immutable;

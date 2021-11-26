@@ -1,4 +1,3 @@
-const util = require("util");
 const Left = (x) => ({
   ap: (fx) => fx.map(x),
   chain: (f) => Left(x),

@@ -1,4 +1,4 @@
-const { Right } = require("./either");
+const { Right } = require("./Either");
 const { List } = require("immutable-ext");
 
 /**

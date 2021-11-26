@@ -1,4 +1,4 @@
-const { Box } = require("./box");
+const { Box } = require("./Box");
 
 // Box, Either, Task, List are Monads
 // F.of, chain (flatMap, bind, >>=) are creating Monads

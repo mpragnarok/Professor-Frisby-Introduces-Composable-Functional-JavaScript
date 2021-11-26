@@ -1,7 +1,7 @@
 const util = require("util");
 const { List, Map } = require("./immutable-ext");
-const { Either, Left } = require("./either");
-const { All } = require("./semigroups");
+const { Either, Left } = require("./Either");
+const { All } = require("./Semigroups");
 const { Sum, Right } = require("./8_monoids");
 const { compose } = require("./common");
 

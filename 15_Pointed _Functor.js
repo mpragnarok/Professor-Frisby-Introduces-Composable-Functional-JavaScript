@@ -1,5 +1,5 @@
-const { Box } = require("./box");
-const { Either } = require("./either");
+const { Box } = require("./Box");
+const { Either } = require("./Either");
 const Task = require("data.task");
 
 Task.of("hello"); // Task('hello')

@@ -1,9 +1,10 @@
 const Box = (x) => ({
   map: (f) => Box(f(x)),
-  [util.inspect.custom]: () => `Box(${x})`,
+  inspect: () => `Box(${x})`,
   join: (m) => Box(m).chain((y) => y)(Box(x)),
   chain: (f) => f(x),
   fold: (f) => f(x),
+  ap: (b2) => b2.map(x),
 });
 
 Box.of = (x) => Box(x);

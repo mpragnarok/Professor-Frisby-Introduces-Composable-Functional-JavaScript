@@ -1,22 +1,16 @@
-export const Sum = (x) => ({
+export const Sum = x => ({
   value: x,
   concat: ({ value: y }) => Sum(x + y),
   inspect: () => `Sum(${x})`,
 });
-export const Concat = (x) => ({
+export const Concat = x => ({
   value: x,
   concat: ({ value: y }) => Concat(x.concat(y)),
   inspect: () => `Concat(${x})`,
 });
 
-export const All = (x) => ({
+export const All = x => ({
   value: x,
   concat: ({ value: y }) => All(x && y),
   inspect: () => `All(${x})`,
-});
-
-export const First = (x) => ({
-  value: x,
-  concat: (_) => First(x),
-  inspect: () => `First(${x})`,
 });
