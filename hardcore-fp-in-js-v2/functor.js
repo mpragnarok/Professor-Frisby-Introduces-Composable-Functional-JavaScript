@@ -10,8 +10,9 @@ const nextCharForNumberString_ = (str) => {
 // Identity functor: Box
 const Box = (x) => ({
   map: (f) => Box(f(x)), // Run the `function` on the `x` and keep it in the `Box`, So we can continue to chain
+  chain: (f) => f(x),
   fold: (f) => f(x),
-  inspect: `Box(${x})`,
+  inspect: () => `Box(${x})`,
 });
 
 const result = () =>
@@ -70,4 +71,44 @@ console.log(res); // The answer is 25
 // Practices: https://codepen.io/drboolean/pen/poodxOm?editors=0010
 // Solution: https://codepen.io/mp922352612/pen/GRvVJOx?editors=0010
 
-// Nested Functor
+// Adding Chain for Nested Functor
+
+const moneyToFloat = (str) =>
+  Box(str)
+    .map((str) => str.replace(/\$/, ""))
+    .fold(parseFloat);
+
+const percentToFloat = (str) =>
+  Box(str)
+    .map((str) => str.replace(/\%/, ""))
+    .map(parseFloat)
+    .fold((float) => float * 0.01);
+
+const applyDiscount_ = (price, discount) =>
+  Box(moneyToFloat(price)).fold((cents) => Box(percentToFloat(discount)).fold((savings) => cents - cents * savings));
+
+// const moneyToFloat = (str) =>
+//   Box(str)
+//     .map((str) => str.replace(/\$/, ""))
+//     .map(parseFloat);
+
+// const percentToFloat = (str) =>
+//   Box(str)
+//     .map((str) => str.replace(/\%/, ""))
+//     .map(parseFloat)
+//     .map((float) => float * 0.01);
+
+// const applyDiscount_ = (price, diㄐscount) =>
+//   moneyToFloat(price).fold((cents) => percentToFloat(discount).fold((savings) => cents - cents * savings));
+
+const toFixed_ = (price) => price.toFixed(2);
+// const toFixed = (price) => Box(price).map((price) => price.toFixed(2));
+
+const applyDiscount = (price, discount) =>
+  Box(moneyToFloat(price))
+    .chain((cents) => Box(percentToFloat(discount)).map((savings) => cents - cents * savings))
+    .map(toFixed_)
+    .fold((x) => x);
+
+console.log("applyDiscount_", applyDiscount_("$5.00", "20%"));
+console.log("applyDiscount", applyDiscount("$5.00", "28%"));
