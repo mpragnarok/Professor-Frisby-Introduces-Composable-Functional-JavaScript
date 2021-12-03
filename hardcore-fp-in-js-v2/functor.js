@@ -12,7 +12,7 @@ const Box = (x) => ({
   map: (f) => Box(f(x)), // Run the `function` on the `x` and keep it in the `Box`, So we can continue to chain
   chain: (f) => f(x),
   fold: (f) => f(x),
-  inspect: () => `Box(${x})`,
+  toString: () => `Box(${x})`,
 });
 
 const result = () =>
